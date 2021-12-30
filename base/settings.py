@@ -25,6 +25,17 @@ SECRET_KEY = 'django-insecure-u0hqdj7hqud*s@&vkxc@5_*%5$w#n(75-o(wvual(4a9n+i@7)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CSRF_TRUSTED_ORIGINS = ['serverxx.azurewebsites.net']
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+# CSRF_COOKIE_DOMAIN = 'bluemix.net'
+
+
 ALLOWED_HOSTS = [
     'serverxx.azurewebsites.net'
 ]
