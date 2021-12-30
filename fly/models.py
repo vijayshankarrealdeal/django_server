@@ -1,3 +1,14 @@
 from django.db import models
 
-# Create your models here.
+class FlightBoard(models.Model):
+    departure = models.CharField(max_length=100)
+    time = models.DateTimeField()
+    flight = models.CharField(max_length=100)
+    airline = models.CharField(max_length=100)
+    info_url = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+    is_departure = models.BooleanField()
+
+    def __str__(self) -> str:
+        return self.departure
+
