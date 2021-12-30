@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 DATABASES = {
    'default': {
-       'ENGINE': 'serverxx.postgres.database.azure.com',
+       'ENGINE': 'django.db.backends.postgresql',
        'NAME': 'djangoxx',
        'USER': 'serverxx',
        'PASSWORD': 'google@99',
-       'HOST': 'serverxx',
+       'HOST': 'serverxx.postgres.database.azure.com',
        'PORT': '5432',
    }
 }
