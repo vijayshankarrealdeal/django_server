@@ -35,6 +35,17 @@ class ShopInterNationalSerializers(serializers.ModelSerializer):
         model = ShopsInterNational
         fields = '__all__'
 
+class PreFoodSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = PreFood
+        fields = '__all__'
+
+class PostFoodSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = PostFood
+        fields = '__all__'
+
+
 class FlightBoardSerializers(serializers.ModelSerializer):
     class Meta:
         model = FlightBoard

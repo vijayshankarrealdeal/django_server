@@ -8,6 +8,8 @@ urlpatterns = [
     path('flightstauts/', get_flight_board, name='flight_board'),
     path('nationalshop/', get_shop_national, name='nshop'),
     path('internationalshop/', get_shop_international, name='inshop'),
+    path('perfood/', get_prefood, name='prefoood'),
+    path('postfood/', get_postfood, name='postfood'),
 
 
 ]

@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(FlightBoard)
 admin.site.register(ShopsNational)
 admin.site.register(ShopsInterNational)
+admin.site.register(PreFood)
+admin.site.register(PostFood)

@@ -60,3 +60,15 @@ def get_shop_international(request):
     f_serail = ShopInterNationalSerializers(interShop,many=True)
     return Response({"data":f_serail.data})
 
+@api_view(["GET"])
+def get_prefood(request):
+    s_nat = PreFood.objects.all()
+    f_serail = PreFoodSerializers(s_nat,many=True)
+    return Response({"data":f_serail.data})
+
+@api_view(["GET"])
+def get_postfood(request):
+    interShop = PostFood.objects.all()
+    f_serail = PostFoodSerializers(interShop,many=True)
+    return Response({"data":f_serail.data})
+
