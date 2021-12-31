@@ -6,8 +6,8 @@ urlpatterns = [
     path('user/register', register_user, name='signUP'),
     path('user/profile', get_userprofile, name='user_profile'),
     path('flightstauts/', get_flight_board, name='flight_board'),
-    path('nationalshop/', get_flight_board, name='nshop'),
-    path('internationalshop/', get_flight_board, name='inshop'),
+    path('nationalshop/', get_shop_national, name='nshop'),
+    path('internationalshop/', get_shop_international, name='inshop'),
 
 
 ]
