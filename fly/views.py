@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
-
+import requests
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
@@ -42,6 +42,14 @@ def get_userprofile(request):
     u_serail = UserSerializer(user,many=False)
     return Response(u_serail.data)
 
+
+###
+@api_view(["GET"])
+def get_movies(request):
+    api_key = '38f5b3c12b04920fbe5fd093187951af'
+    url = 'https://api.themoviedb.org/3/trending/all/day?api_key='+api_key
+    data = requests.get(url)
+    return Response(data.json())
 @api_view(["GET"])
 def get_flight_board(request):
     flight_board = FlightBoard.objects.all()
