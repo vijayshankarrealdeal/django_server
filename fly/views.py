@@ -48,4 +48,15 @@ def get_flight_board(request):
     f_serail = FlightBoardSerializers(flight_board,many=True)
     return Response({"data":f_serail.data})
 
+@api_view(["GET"])
+def get_shop_national(request):
+    s_nat = ShopsNational.objects.all()
+    f_serail = ShopNationalSerializers(s_nat,many=True)
+    return Response({"data":f_serail.data})
+
+@api_view(["GET"])
+def get_shop_international(request):
+    interShop = ShopsInterNational.objects.all()
+    f_serail = ShopInterNationalSerializers(interShop,many=True)
+    return Response({"data":f_serail.data})
 

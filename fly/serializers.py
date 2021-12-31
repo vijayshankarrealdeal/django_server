@@ -25,6 +25,15 @@ class UserSerializerWithToken(UserSerializer):
 
 
 
+class ShopNationalSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ShopsNational
+        fields = '__all__'
+
+class ShopInterNationalSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ShopsInterNational
+        fields = '__all__'
 
 class FlightBoardSerializers(serializers.ModelSerializer):
     class Meta:
