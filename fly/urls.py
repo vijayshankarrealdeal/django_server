@@ -10,7 +10,6 @@ urlpatterns = [
     path('internationalshop/', get_shop_international, name='inshop'),
     path('perfood/', get_prefood, name='prefoood'),
     path('postfood/', get_postfood, name='postfood'),
-
     path('movies/', get_movies, name='movies'),
 
 
