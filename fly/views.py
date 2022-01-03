@@ -125,5 +125,5 @@ def book_flight_ticket(request):
                           cardType=ctype,
                           cardCvv=cccv
                           )
-    # b.save()
+    b.save()
     return Response({"data": 'saved'})
