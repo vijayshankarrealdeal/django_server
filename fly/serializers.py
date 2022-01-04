@@ -22,7 +22,11 @@ class UserSerializerWithToken(UserSerializer):
         return str(token.access_token)
 
 
-
+class GetBookingDetailsOfUser(serializers.ModelSerializer):
+    class Meta:
+        model = BookFlightTickets
+        fields = ['flight']
+        depth = 1
 
 
 class ShopNationalSerializers(serializers.ModelSerializer):

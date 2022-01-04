@@ -11,7 +11,8 @@ urlpatterns = [
     path('perfood/', get_prefood, name='prefoood'),
     path('postfood/', get_postfood, name='postfood'),
     path('movies/', get_movies, name='movies'),
-    path('booktickets/',book_flight_ticket,name="tikets_book")
+    path('booktickets/',book_flight_ticket,name="tikets_book"),
+    path('mytrips/',get_booking_details,name="tikets_book")
 
 
 ]

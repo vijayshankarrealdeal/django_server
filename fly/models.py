@@ -27,6 +27,8 @@ class FlightBookData(models.Model):
     price = models.CharField(max_length=70)
     refund = models.CharField(max_length=70)
     total_pay = models.IntegerField()
+    def __str__(self) -> str:
+        return str(self.total_pay)
 
 class BookFlightTickets(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

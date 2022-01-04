@@ -46,6 +46,15 @@ def get_userprofile(request):
     u_serail = UserSerializer(user, many=False)
     return Response(u_serail.data)
 
+###
+@api_view(["GET","POST"])
+@permission_classes([IsAuthenticated])
+def get_booking_details(request):
+    user = request.user
+    print(user)
+    interShop = BookFlightTickets.objects.filter(user = user)
+    f_serail = GetBookingDetailsOfUser(interShop, many=True)
+    return Response({"data": f_serail.data})
 
 ###
 @api_view(["GET"])
@@ -77,6 +86,8 @@ def get_shop_international(request):
     return Response({"data": f_serail.data})
 
 
+
+
 @api_view(["GET"])
 def get_prefood(request):
     s_nat = PreFood.objects.all()
@@ -95,35 +106,48 @@ def get_postfood(request):
 def book_flight_ticket(request):
     data = request.data
     email = data.get('email')
-    cn = data.get('cardnumber')
-    cmon = data.get('cardmonth')
-    cyr = request.get('cardyr')
-    ctype = request.get('cardtype')
-    cccv = request.get('cardccv')
-    flightImage = request.get('flight_image')
-    fightName = request.get('fight_name')
-    flightNo = request.get('flight_no')
-    originTime = request.get('origin_time')
-    originPlace = request.get('origin_place')
-    destinationTime = request.get('destination_time')
-    destinationPlace = request.get('destination_place')
-    durationStop = request.get('duration_stop')
-    noStops = request.get('no_stops')
-    price = request.get('price')
-    refund = request.get('refund')
-    total_pay = request.get('totalpay')
+    cn = data.get('cardNumber')
+    cmon = data.get('cardMonth')
+    cyr = data.get('cardYear')
+    ctype = data.get('cardType')
+    cccv = data.get('cardCvv')
+    flightImage = data.get('flight_image')
+    fightName = data.get('fight_name')
+    flightNo = data.get('flight_no')
+    originTime = data.get('origin_time')
+    originPlace = data.get('origin_place')
+    destinationTime = data.get('destination_time')
+    destinationPlace = data.get('destination_place')
+    durationStop = data.get('duration_stop')
+    noStops = data.get('no_stops')
+    price = data.get('price')
+    refund = data.get('refund')
+    total_pay = data.get('total_price')
     user = User.objects.get(username=email)
     flight_x = FlightBookData(
-        flightImage, fightName, flightNo, originTime, originPlace, destinationTime, destinationPlace, durationStop, noStops, price, refund, total_pay
-
+        flight_image=flightImage,
+        fight_name=fightName,
+        flight_no=flightNo,
+        origin_time=originTime,
+        origin_place=originPlace,
+        destination_time=destinationTime,
+        destination_place=destinationPlace,
+        duration_stop=durationStop,
+        no_stops=noStops,
+        price=price,
+        refund=refund,
+        total_pay=total_pay,
     )
-    b = BookFlightTickets(user=user,
-                          flight=flight_x,
-                          cardNumber=cn,
-                          cardMonth=cmon,
-                          cardYear=cyr,
-                          cardType=ctype,
-                          cardCvv=cccv
-                          )
+    flight_x.save()
+    b = BookFlightTickets(
+
+        user=user,
+        flight=flight_x,
+        cardNumber=cn,
+        cardMonth=cmon,
+        cardYear=cyr,
+        cardType=ctype,
+        cardCvv=cccv
+    )
     b.save()
     return Response({"data": 'saved'})
