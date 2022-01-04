@@ -42,6 +42,12 @@ class BookFlightTickets(models.Model):
         return str(self.user.email)
 
 
+class DealsAndOffers(models.Model):
+    title = models.CharField(max_length=100,null=True)
+    discount = models.CharField(max_length=100,null=True)
+    content = models.CharField(max_length=100,null=True)
+
+
 class ShopsNational(models.Model):
     img = models.CharField(max_length=2500)
     title  = models.CharField(max_length=2500)

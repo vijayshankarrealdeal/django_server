@@ -71,6 +71,12 @@ def get_flight_board(request):
     f_serail = FlightBoardSerializers(flight_board, many=True)
     return Response({"data": f_serail.data})
 
+@api_view(["GET"])
+def get_dealsOffer(request):
+    flight_board = DealsAndOffers.objects.all()
+    f_serail = DealOfferSerializers(flight_board, many=True)
+    return Response({"data": f_serail.data})
+
 
 @api_view(["GET"])
 def get_shop_national(request):

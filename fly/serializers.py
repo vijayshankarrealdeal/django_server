@@ -54,3 +54,9 @@ class FlightBoardSerializers(serializers.ModelSerializer):
     class Meta:
         model = FlightBoard
         fields = '__all__'
+
+
+class DealOfferSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = DealsAndOffers
+        fields = '__all__'
