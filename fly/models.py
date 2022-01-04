@@ -38,6 +38,7 @@ class BookFlightTickets(models.Model):
     cardYear= models.CharField(max_length=30)
     cardType= models.CharField(max_length=30)
     cardCvv= models.CharField(max_length=30)
+    datetime= models.DateTimeField(auto_now=True,null=True)
     def __str__(self) -> str:
         return str(self.user.email)
 
