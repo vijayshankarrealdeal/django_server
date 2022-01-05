@@ -27,6 +27,7 @@ class FlightBookData(models.Model):
     price = models.CharField(max_length=70)
     refund = models.CharField(max_length=70)
     total_pay = models.IntegerField()
+    cancel = models.BooleanField(default=False)
     def __str__(self) -> str:
         return str(self.total_pay)
 
@@ -38,9 +39,8 @@ class BookFlightTickets(models.Model):
     cardYear= models.CharField(max_length=30)
     cardType= models.CharField(max_length=30)
     cardCvv= models.CharField(max_length=30)
-    cancel = models.BooleanField(default=False)
     def __str__(self) -> str:
-        return str(self.user.access)
+        return str(self.user.email)
 
 
 class DealsAndOffers(models.Model):

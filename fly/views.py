@@ -143,6 +143,7 @@ def book_flight_ticket(request):
         price=price,
         refund=refund,
         total_pay=total_pay,
+        cancel = False,
     )
     flight_x.save()
     b = BookFlightTickets(
@@ -152,8 +153,7 @@ def book_flight_ticket(request):
         cardMonth=cmon,
         cardYear=cyr,
         cardType=ctype,
-        cardCvv=cccv,
-        cancel = False,
+        cardCvv=cccv,  
     )
     b.save()
     return Response({"data": 'saved'})
