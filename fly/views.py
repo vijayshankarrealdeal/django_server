@@ -54,7 +54,6 @@ def get_booking_details(request):
     print(user)
     interShop = BookFlightTickets.objects.filter(user = user)
     f_serail = GetBookingDetailsOfUser(interShop, many=True)
-    
     return Response({"data": f_serail.data})
 
 @api_view(["PUT","GET"])
@@ -65,6 +64,36 @@ def cancel_ticket(request,pk):
     ticket = BookFlightTickets.objects.filter(user = user,id = pk)
     ticket.update(cancel = True)
     return Response({"data": "Success"})
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def addchecklistto_ticket(request,pk):
+    user = request.user
+    data = request.data
+    ticket = BookFlightTickets.objects.get(user = user,id = pk)
+    Documents = data.get('Documents')
+    Financial = data.get('Financial')
+    Clothes = data.get('Clothes')
+    Travelaids = data.get('Travel aids')
+    Appliances = data.get('Appliances')
+    Health = data.get('Health')
+    Toiletries = data.get('Toiletries')
+    genral_activity = data.get('General activities')
+    checklistmodel = ChecklistModel(
+    ticket = ticket,
+    Documents = Documents,
+    Financial =Financial,
+    Clothes = Clothes,
+    Travelaids =Travelaids,
+    Appliances = Appliances,
+    Health = Health,
+    Toiletries = Toiletries,
+    genral_activity = genral_activity
+    )
+    checklistmodel.save()
+    checklist = ChecklistModel.objects.all()
+    ser = ChecklistSerializers(checklist,many=True)
+    return Response({"data": ser.data})
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
@@ -172,6 +201,7 @@ def book_flight_ticket(request):
         refund=refund,
         total_pay=total_pay,
         cancel = False, 
+        checklistcreated = False
     )
     b.save()
     return Response({"data": 'saved'})

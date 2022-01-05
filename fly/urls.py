@@ -15,7 +15,8 @@ urlpatterns = [
     path('mytrips/',get_booking_details,name="tikets_book"),
     path('dealsoffer/',get_dealsOffer,name="deal_offer"),
     path('cancel_ticket/<str:pk>',cancel_ticket,name="cancel_ticket"),
-        path('delete_ticket/<str:pk>',delete_ticket,name="delete_ticket")
+    path('delete_ticket/<str:pk>',delete_ticket,name="delete_ticket"),
+    path('checklist_ticket/<str:pk>',addchecklistto_ticket,name="checklist_ticket")
 
 
 

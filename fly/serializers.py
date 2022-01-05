@@ -32,8 +32,12 @@ class GetBookingDetailsOfUser(serializers.ModelSerializer):
          'origin_place',
          'destination_time',
                   'destination_place', 'duration_stop',
-                   'no_stops', 'price', 'refund', 'total_pay', 'cancel'
+                   'no_stops', 'price', 'refund', 'total_pay', 'cancel','checklistcreated'
                   ]
+class ChecklistSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ChecklistModel
+        fields = '__all__'
 
 
 class ShopNationalSerializers(serializers.ModelSerializer):
