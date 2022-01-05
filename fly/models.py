@@ -36,6 +36,7 @@ class BookFlightTickets(models.Model):
     refund = models.CharField(max_length=70,null= True)
     total_pay = models.IntegerField(default=0,null= True)
     cancel = models.BooleanField(default=False)
+    date_time = models.DateTimeField(auto_now_add=True,null= True)
     def __str__(self) -> str:
         return str(self.user.email + self.flight_no)
 

@@ -54,6 +54,7 @@ def get_booking_details(request):
     print(user)
     interShop = BookFlightTickets.objects.filter(user = user)
     f_serail = GetBookingDetailsOfUser(interShop, many=True)
+    
     return Response({"data": f_serail.data})
 
 @api_view(["PUT","GET"])
@@ -61,10 +62,18 @@ def get_booking_details(request):
 def cancel_ticket(request,pk):
     user = request.user
     print(pk)
-    ticket = BookFlightTickets.objects.filter(user = user,flight = pk)
-    print(ticket.flight)
+    ticket = BookFlightTickets.objects.filter(user = user,id = pk)
+    ticket.update(cancel = True)
+    return Response({"data": "Success"})
 
-    return Response({"data": 'done'})
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def delete_ticket(request,pk):
+    user = request.user
+    print(pk)
+    ticket = BookFlightTickets.objects.filter(user = user,id = pk)
+    ticket.delete()
+    return Response({"data": "Success"})
 
 
 ###
