@@ -25,8 +25,7 @@ class UserSerializerWithToken(UserSerializer):
 class GetBookingDetailsOfUser(serializers.ModelSerializer):
     class Meta:
         model = BookFlightTickets
-        fields = ['flight']
-        depth = 1
+        fields = '__all__'
 
 
 class ShopNationalSerializers(serializers.ModelSerializer):
