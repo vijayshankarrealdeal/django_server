@@ -75,7 +75,7 @@ class ShopsInterNational(models.Model):
 
 
 class ChecklistModel(models.Model):
-    ticket = models.ForeignKey(BookFlightTickets, on_delete=models.CASCADE)
+    ticket = models.OneToOneField(BookFlightTickets, on_delete=models.CASCADE)
     Documents = ArrayField(models.CharField(
         max_length=50, blank=True), null=True)
     Financial = ArrayField(models.CharField(
