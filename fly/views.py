@@ -47,30 +47,34 @@ def get_userprofile(request):
     return Response(u_serail.data)
 
 ###
-@api_view(["GET","POST"])
+
+
+@api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
 def get_booking_details(request):
     user = request.user
     print(user)
-    interShop = BookFlightTickets.objects.filter(user = user)
+    interShop = BookFlightTickets.objects.filter(user=user)
     f_serail = GetBookingDetailsOfUser(interShop, many=True)
     return Response({"data": f_serail.data})
 
-@api_view(["PUT","GET"])
+
+@api_view(["PUT", "GET"])
 @permission_classes([IsAuthenticated])
-def cancel_ticket(request,pk):
+def cancel_ticket(request, pk):
     user = request.user
     print(pk)
-    ticket = BookFlightTickets.objects.filter(user = user,id = pk)
-    ticket.update(cancel = True)
+    ticket = BookFlightTickets.objects.filter(user=user, id=pk)
+    ticket.update(cancel=True)
     return Response({"data": "Success"})
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
-def addchecklistto_ticket(request,pk):
+def addchecklistto_ticket(request, pk):
     user = request.user
     data = request.data
-    ticket = BookFlightTickets.objects.get(user = user,id = pk)
+    ticket = BookFlightTickets.objects.get(user=user, id=pk)
     Documents = data.get('Documents')
     Financial = data.get('Financial')
     Clothes = data.get('Clothes')
@@ -80,27 +84,38 @@ def addchecklistto_ticket(request,pk):
     Toiletries = data.get('Toiletries')
     genral_activity = data.get('General activities')
     checklistmodel = ChecklistModel(
-    ticket = ticket,
-    Documents = Documents,
-    Financial =Financial,
-    Clothes = Clothes,
-    Travelaids =Travelaids,
-    Appliances = Appliances,
-    Health = Health,
-    Toiletries = Toiletries,
-    genral_activity = genral_activity
+        ticket=ticket,
+        Documents=Documents,
+        Financial=Financial,
+        Clothes=Clothes,
+        Travelaids=Travelaids,
+        Appliances=Appliances,
+        Health=Health,
+        Toiletries=Toiletries,
+        genral_activity=genral_activity
     )
-    checklistmodel.save()
+    try:
+        checklistmodel.save()
+    except:
+        checklist = ChecklistModel.objects.filter(ticket=ticket)
+        checklist.update(ticket=ticket, Documents=Documents, Financial=Financial,
+                         Clothes=Clothes,
+                         Travelaids=Travelaids,
+                         Appliances=Appliances,
+                         Health=Health,
+                         Toiletries=Toiletries,
+                         genral_activity=genral_activity)
     checklist = ChecklistModel.objects.all()
-    ser = ChecklistSerializers(checklist,many=True)
+    ser = ChecklistSerializers(checklist, many=True)
     return Response({"data": ser.data})
+
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
-def delete_ticket(request,pk):
+def delete_ticket(request, pk):
     user = request.user
     print(pk)
-    ticket = BookFlightTickets.objects.filter(user = user,id = pk)
+    ticket = BookFlightTickets.objects.filter(user=user, id=pk)
     ticket.delete()
     return Response({"data": "Success"})
 
@@ -119,6 +134,7 @@ def get_flight_board(request):
     flight_board = FlightBoard.objects.all()
     f_serail = FlightBoardSerializers(flight_board, many=True)
     return Response({"data": f_serail.data})
+
 
 @api_view(["GET"])
 def get_dealsOffer(request):
@@ -141,8 +157,6 @@ def get_shop_international(request):
     return Response({"data": f_serail.data})
 
 
-
-
 @api_view(["GET"])
 def get_prefood(request):
     s_nat = PreFood.objects.all()
@@ -155,8 +169,6 @@ def get_postfood(request):
     interShop = PostFood.objects.all()
     f_serail = PostFoodSerializers(interShop, many=True)
     return Response({"data": f_serail.data})
-
-
 
 
 @api_view(["Post"])
@@ -187,7 +199,7 @@ def book_flight_ticket(request):
         cardMonth=cmon,
         cardYear=cyr,
         cardType=ctype,
-        cardCvv=cccv, 
+        cardCvv=cccv,
         flight_image=flightImage,
         fight_name=fightName,
         flight_no=flightNo,
@@ -200,8 +212,8 @@ def book_flight_ticket(request):
         price=price,
         refund=refund,
         total_pay=total_pay,
-        cancel = False, 
-        checklistcreated = False
+        cancel=False,
+        checklistcreated=False
     )
     b.save()
     return Response({"data": 'saved'})
