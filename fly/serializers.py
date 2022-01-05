@@ -26,18 +26,21 @@ class UserSerializerWithToken(UserSerializer):
 class GetBookingDetailsOfUser(serializers.ModelSerializer):
     class Meta:
         model = BookFlightTickets
-        fields = ['id', 
-        'flight_image', 'fight_name', 'flight_no',
-         'origin_time',
-         'origin_place',
-         'destination_time',
+        fields = ['id',
+                  'flight_image', 'fight_name', 'flight_no',
+                  'origin_time',
+                  'origin_place',
+                  'destination_time',
                   'destination_place', 'duration_stop',
-                   'no_stops', 'price', 'refund', 'total_pay', 'cancel','checklistcreated'
+                  'no_stops', 'price', 'refund', 'total_pay', 'cancel', 'checklistcreated'
                   ]
+
+
 class ChecklistSerializers(serializers.ModelSerializer):
     class Meta:
         model = ChecklistModel
-        fields = '__all__'
+        fields = ['id','Documents', 'Financial', 'Clothes', 'Travelaids',
+                  'Appliances', 'Health', 'Toiletries', 'genral_activity']
 
 
 class ShopNationalSerializers(serializers.ModelSerializer):

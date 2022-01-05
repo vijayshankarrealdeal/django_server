@@ -95,6 +95,8 @@ def addchecklistto_ticket(request, pk):
         genral_activity=genral_activity
     )
     try:
+        ticket_x = BookFlightTickets.objects.filter(user=user, id=pk)
+        ticket_x.update(checklistcreated=True)
         checklistmodel.save()
     except:
         checklist = ChecklistModel.objects.filter(ticket=ticket)
@@ -108,6 +110,18 @@ def addchecklistto_ticket(request, pk):
     checklist = ChecklistModel.objects.all()
     ser = ChecklistSerializers(checklist, many=True)
     return Response({"data": ser.data})
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_all_checklist(request, pk):
+    user = request.user
+    print(pk)
+    ticke = BookFlightTickets.objects.filter(user=user,id = pk)
+    checklist = ChecklistModel.objects.filter(ticket = ticke[0])
+    ser = ChecklistSerializers(checklist, many=True)
+    return Response({"data": ser.data})
+
+
 
 
 @api_view(["GET"])

@@ -77,19 +77,27 @@ class ShopsInterNational(models.Model):
 class ChecklistModel(models.Model):
     ticket = models.OneToOneField(BookFlightTickets, on_delete=models.CASCADE)
     Documents = ArrayField(models.CharField(
+        
         max_length=50, blank=True), null=True)
     Financial = ArrayField(models.CharField(
+        
         max_length=50, blank=True), null=True)
     Clothes = ArrayField(models.CharField(
+        
         max_length=50, blank=True), null=True)
     Travelaids = ArrayField(models.CharField(
+        
         max_length=50, blank=True), null=True)
     Appliances = ArrayField(models.CharField(
+        
         max_length=50, blank=True), null=True)
-    Health = ArrayField(models.CharField(max_length=50, blank=True), null=True)
+    Health = ArrayField(models.CharField(
+        max_length=50, blank=True), null=True)
     Toiletries = ArrayField(models.CharField(
+        
         max_length=50, blank=True), null=True)
     genral_activity = ArrayField(models.CharField(
+        
         max_length=50, blank=True), null=True)
 
     def __str__(self) -> str:
