@@ -26,8 +26,13 @@ class UserSerializerWithToken(UserSerializer):
 class GetBookingDetailsOfUser(serializers.ModelSerializer):
     class Meta:
         model = BookFlightTickets
-        fields = ['id', 'flight_image', 'fight_name', 'flight_no', 'origin_time', 'origin_place', 'destination_time'
-                  'destination_place', 'duration_stop', 'no_stops', 'price', 'refund', 'total_pay', 'cancel'
+        fields = ['id', 
+        'flight_image', 'fight_name', 'flight_no',
+         'origin_time',
+         'origin_place',
+         'destination_time',
+                  'destination_place', 'duration_stop',
+                   'no_stops', 'price', 'refund', 'total_pay', 'cancel'
                   ]
 
 
