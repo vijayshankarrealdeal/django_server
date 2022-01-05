@@ -56,6 +56,17 @@ def get_booking_details(request):
     f_serail = GetBookingDetailsOfUser(interShop, many=True)
     return Response({"data": f_serail.data})
 
+@api_view(["PUT","GET"])
+@permission_classes([IsAuthenticated])
+def cancel_ticket(request,pk):
+    user = request.user
+    print(pk)
+    ticket = BookFlightTickets.objects.filter(user = user,flight = pk)
+    print(ticket.flight)
+
+    return Response({"data": 'done'})
+
+
 ###
 @api_view(["GET"])
 def get_movies(request):
@@ -108,6 +119,8 @@ def get_postfood(request):
     return Response({"data": f_serail.data})
 
 
+
+
 @api_view(["Post"])
 def book_flight_ticket(request):
     data = request.data
@@ -130,7 +143,13 @@ def book_flight_ticket(request):
     refund = data.get('refund')
     total_pay = data.get('total_price')
     user = User.objects.get(username=email)
-    flight_x = FlightBookData(
+    b = BookFlightTickets(
+        user=user,
+        cardNumber=cn,
+        cardMonth=cmon,
+        cardYear=cyr,
+        cardType=ctype,
+        cardCvv=cccv, 
         flight_image=flightImage,
         fight_name=fightName,
         flight_no=flightNo,
@@ -143,17 +162,7 @@ def book_flight_ticket(request):
         price=price,
         refund=refund,
         total_pay=total_pay,
-        cancel = False,
-    )
-    flight_x.save()
-    b = BookFlightTickets(
-        user=user,
-        flight=flight_x,
-        cardNumber=cn,
-        cardMonth=cmon,
-        cardYear=cyr,
-        cardType=ctype,
-        cardCvv=cccv,  
+        cancel = False, 
     )
     b.save()
     return Response({"data": 'saved'})

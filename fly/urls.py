@@ -13,7 +13,8 @@ urlpatterns = [
     path('movies/', get_movies, name='movies'),
     path('booktickets/',book_flight_ticket,name="tikets_book"),
     path('mytrips/',get_booking_details,name="tikets_book"),
-    path('dealsoffer/',get_dealsOffer,name="deal_offer")
+    path('dealsoffer/',get_dealsOffer,name="deal_offer"),
+    path('cancel_ticket/<str:pk>',cancel_ticket,name="cancel_ticket")
 
 
 ]

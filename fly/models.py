@@ -14,7 +14,15 @@ class FlightBoard(models.Model):
     def __str__(self) -> str:
         return self.departure
 
-class FlightBookData(models.Model):
+
+
+class BookFlightTickets(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    cardNumber = models.CharField(max_length=30)
+    cardMonth= models.CharField(max_length=30)
+    cardYear= models.CharField(max_length=30)
+    cardType= models.CharField(max_length=30)
+    cardCvv= models.CharField(max_length=30)
     flight_image = models.CharField(max_length=70)
     fight_name = models.CharField(max_length=70)
     flight_no = models.CharField(max_length=70)
@@ -29,18 +37,7 @@ class FlightBookData(models.Model):
     total_pay = models.IntegerField()
     cancel = models.BooleanField(default=False)
     def __str__(self) -> str:
-        return str(self.total_pay)
-
-class BookFlightTickets(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    flight = models.OneToOneField(FlightBookData,on_delete=models.CASCADE)
-    cardNumber = models.CharField(max_length=30)
-    cardMonth= models.CharField(max_length=30)
-    cardYear= models.CharField(max_length=30)
-    cardType= models.CharField(max_length=30)
-    cardCvv= models.CharField(max_length=30)
-    def __str__(self) -> str:
-        return str(self.user.email)
+        return str(self.user.email + self.flight_no)
 
 
 class DealsAndOffers(models.Model):
