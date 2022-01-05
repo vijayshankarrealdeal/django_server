@@ -1,23 +1,24 @@
 from django.db.models import fields
-from rest_framework import  serializers
+from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
-from  . models import *
-from django.contrib.auth.models import  User
-
+from . models import *
+from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','email']
+        fields = ['id', 'username', 'email']
+
 
 class UserSerializerWithToken(UserSerializer):
     access = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = User
-        fields = ['id','username','email','access']
-    
-    def get_access(self,obj):
+        fields = ['id', 'username', 'email', 'access']
+
+    def get_access(self, obj):
         token = RefreshToken.for_user(obj)
         return str(token.access_token)
 
@@ -25,7 +26,9 @@ class UserSerializerWithToken(UserSerializer):
 class GetBookingDetailsOfUser(serializers.ModelSerializer):
     class Meta:
         model = BookFlightTickets
-        fields = '__all__'
+        fields = ['id', 'flight_image', 'fight_name', 'flight_no', 'origin_time', 'origin_place', 'destination_time'
+                  'destination_place', 'duration_stop', 'no_stops', 'price', 'refund', 'total_pay', 'cancel'
+                  ]
 
 
 class ShopNationalSerializers(serializers.ModelSerializer):
@@ -33,15 +36,18 @@ class ShopNationalSerializers(serializers.ModelSerializer):
         model = ShopsNational
         fields = '__all__'
 
+
 class ShopInterNationalSerializers(serializers.ModelSerializer):
     class Meta:
         model = ShopsInterNational
         fields = '__all__'
 
+
 class PreFoodSerializers(serializers.ModelSerializer):
     class Meta:
         model = PreFood
         fields = '__all__'
+
 
 class PostFoodSerializers(serializers.ModelSerializer):
     class Meta:
