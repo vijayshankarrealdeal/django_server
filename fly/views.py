@@ -111,7 +111,7 @@ def get_postfood(request):
 @api_view(["Post"])
 def book_flight_ticket(request):
     data = request.data
-    email = data.get('email')
+    access = data.get('access')
     cn = data.get('cardNumber')
     cmon = data.get('cardMonth')
     cyr = data.get('cardYear')
@@ -129,7 +129,7 @@ def book_flight_ticket(request):
     price = data.get('price')
     refund = data.get('refund')
     total_pay = data.get('total_price')
-    user = User.objects.get(username=email)
+    user = User.objects.get(username=access)
     flight_x = FlightBookData(
         flight_image=flightImage,
         fight_name=fightName,
@@ -146,14 +146,14 @@ def book_flight_ticket(request):
     )
     flight_x.save()
     b = BookFlightTickets(
-
         user=user,
         flight=flight_x,
         cardNumber=cn,
         cardMonth=cmon,
         cardYear=cyr,
         cardType=ctype,
-        cardCvv=cccv
+        cardCvv=cccv,
+        cancel = False,
     )
     b.save()
     return Response({"data": 'saved'})

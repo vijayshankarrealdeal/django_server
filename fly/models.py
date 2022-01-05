@@ -38,8 +38,9 @@ class BookFlightTickets(models.Model):
     cardYear= models.CharField(max_length=30)
     cardType= models.CharField(max_length=30)
     cardCvv= models.CharField(max_length=30)
+    cancel = models.BooleanField(default=False)
     def __str__(self) -> str:
-        return str(self.user.email)
+        return str(self.user.access)
 
 
 class DealsAndOffers(models.Model):
