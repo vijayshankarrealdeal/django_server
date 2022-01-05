@@ -111,7 +111,7 @@ def get_postfood(request):
 @api_view(["Post"])
 def book_flight_ticket(request):
     data = request.data
-    access = data.get('access')
+    email = data.get('email')
     cn = data.get('cardNumber')
     cmon = data.get('cardMonth')
     cyr = data.get('cardYear')
@@ -129,7 +129,7 @@ def book_flight_ticket(request):
     price = data.get('price')
     refund = data.get('refund')
     total_pay = data.get('total_price')
-    user = User.objects.get(username=access)
+    user = User.objects.get(username=email)
     flight_x = FlightBookData(
         flight_image=flightImage,
         fight_name=fightName,
