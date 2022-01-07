@@ -20,6 +20,8 @@ urlpatterns = [
     path('get_checklist/<str:pk>',get_all_checklist,name="checklist_ticket"),
     path('get_coins/',get_usercoin,name="blr"),
     path('update_coins/',update_usercoin,name="blr_coinupdate"),
+    path('delete_coins/',deleteblr_usercoin,name="blr_coindelete"),
+
 
 
     

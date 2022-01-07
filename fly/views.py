@@ -68,6 +68,19 @@ def update_usercoin(request):
     #user_data.update_or_create(coins = 50)
     return Response("done")
 
+@api_view(["POST","GET"])
+@permission_classes([IsAuthenticated])
+def deleteblr_usercoin(request):
+    user = request.user
+    user_data = UserCoins.objects.filter(user = user)
+    userX = UserCoinSerializer(user_data,many = True)
+    coins = userX.data[0]['coins']
+    if coins > 0:
+        user_data.update(coins=coins-30)
+    userX = UserCoinSerializer(user_data,many = True)
+    print(userX.data)
+    return Response("done")
+
 
 
 ###
