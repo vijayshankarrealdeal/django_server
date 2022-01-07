@@ -15,6 +15,12 @@ class FlightBoard(models.Model):
     def __str__(self) -> str:
         return self.departure
 
+class UserCoins(models.Model):
+    user = models.OneToOneField(User,on_delete = models.SET_NULL,null=True)
+    coins = models.IntegerField(default=50)
+    def __str__(self) -> str:
+        return str(self.coins)
+
 
 class BookFlightTickets(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

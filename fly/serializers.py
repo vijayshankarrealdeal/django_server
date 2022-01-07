@@ -10,6 +10,12 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'email']
 
+class UserCoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCoins
+        fields = ['id', 'coins']
+
+
 
 class UserSerializerWithToken(UserSerializer):
     access = serializers.SerializerMethodField(read_only=True)

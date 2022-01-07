@@ -7,3 +7,4 @@ class FlyConfig(AppConfig):
 
     def ready(self):
         import fly.signals
+        
