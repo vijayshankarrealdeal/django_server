@@ -19,7 +19,7 @@ class UserCoins(models.Model):
     user = models.OneToOneField(User,on_delete = models.SET_NULL,null=True)
     coins = models.IntegerField(default=50)
     def __str__(self) -> str:
-        return str(self.coins)
+        return str(self.coins) + str(self.user.email)
 
 
 class BookFlightTickets(models.Model):
