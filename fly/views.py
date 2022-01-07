@@ -50,8 +50,10 @@ def get_userprofile(request):
 @permission_classes([IsAuthenticated])
 def get_usercoin(request):
     user = request.user
-    u_serail = UserCoins(user, many=False)
-    return Response(u_serail.data)
+    user_data = UserCoins.objects.filter(user = user)
+    print(user_data)
+    userX = UserCoinSerializer(user_data,many = True)
+    return Response(userX.data)
 
 
 ###

@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserCoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCoins
-        fields = ['id', 'coins']
+        fields = '__all__'
 
 
 
