@@ -46,6 +46,14 @@ def get_userprofile(request):
     u_serail = UserSerializer(user, many=False)
     return Response(u_serail.data)
 
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_usercoin(request):
+    user = request.user
+    u_serail = UserCoins(user, many=False)
+    return Response(u_serail.data)
+
+
 ###
 
 

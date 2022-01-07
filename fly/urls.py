@@ -17,8 +17,11 @@ urlpatterns = [
     path('cancel_ticket/<str:pk>',cancel_ticket,name="cancel_ticket"),
     path('delete_ticket/<str:pk>',delete_ticket,name="delete_ticket"),
     path('checklist_ticket/<str:pk>',addchecklistto_ticket,name="checklist_ticket"),
+    path('get_checklist/<str:pk>',get_all_checklist,name="checklist_ticket"),
+    path('get_coins',get_usercoin,name="checklist_ticket"),
 
-    path('get_checklist/<str:pk>',get_all_checklist,name="checklist_ticket")
+
+    
 
 
 
