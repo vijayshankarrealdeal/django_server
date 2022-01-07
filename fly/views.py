@@ -55,6 +55,20 @@ def get_usercoin(request):
     userX = UserCoinSerializer(user_data,many = True)
     return Response(userX.data)
 
+@api_view(["POST","GET"])
+@permission_classes([IsAuthenticated])
+def update_usercoin(request):
+    user = request.user
+    user_data = UserCoins.objects.filter(user = user)
+    userX = UserCoinSerializer(user_data,many = True)
+    coins = userX.data[0]['coins']
+    user_data.update(coins=coins+50)
+    userX = UserCoinSerializer(user_data,many = True)
+    print(userX.data)
+    #user_data.update_or_create(coins = 50)
+    return Response("done")
+
+
 
 ###
 
