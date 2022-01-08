@@ -27,8 +27,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
-    # 'serverxx.azurewebsites.net',
-    'serverxxx.azurewebsites.net',
+    'serverxx.azurewebsites.net',
     '127.0.0.1',
     '10.0.2.2'
 ]
@@ -128,10 +127,10 @@ WSGI_APPLICATION = 'base.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'data',
-       'USER': 'serverxxx',
+       'NAME': 'django_server',
+       'USER': 'serverxx',
        'PASSWORD': 'google@99',
-       'HOST': 'serverxxx.postgres.database.azure.com',
+       'HOST': 'serverxx.postgres.database.azure.com',
        'PORT': '5432',
    }
 }
